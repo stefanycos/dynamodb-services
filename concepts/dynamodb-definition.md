@@ -44,6 +44,8 @@ First it's important to emphasize that DynamoDB is Serverless, so we can't contr
  - 16 Eventually Consistent Rads per second, with item size 12 KB: we need 24 RCUs;
  - 10 Strongly Consistent Read per second, with item size 6 KB: we need 20 RCUs.
 
+<hr>
+
 ### Indexes
 
 **DynamoDB - Local Secondary Index (LSI)**
