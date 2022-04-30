@@ -40,9 +40,9 @@ First it's important to emphasize that DynamoDB is Serverless, so we can't contr
 **DynamoDB - Read Capacity Units (RCU)**
 - One Read Capacity Unit (RCU) represents one Strongly Consistent Read per second, or two Eventually Consisted Reads per second, for an item udpa to 4 KB size. If the items are larger than 4 KB, more RCUs are consumed.
 - Examples:
- - 10 Strongly Consistent Read per second, with item size 4 KB: we need 10 RCUs;
- - 16 Eventually Consistent Rads per second, with item size 12 KB: we need 24 RCUs;
- - 10 Strongly Consistent Read per second, with item size 6 KB: we need 20 RCUs.
+  - 10 Strongly Consistent Read per second, with item size 4 KB: we need 10 RCUs;
+  - 16 Eventually Consistent Rads per second, with item size 12 KB: we need 24 RCUs;
+  - 10 Strongly Consistent Read per second, with item size 6 KB: we need 20 RCUs.
 
 <hr>
 
