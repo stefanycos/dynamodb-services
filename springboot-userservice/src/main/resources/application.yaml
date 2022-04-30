@@ -1,0 +1,9 @@
+server:
+  port: '9080'
+
+aws:
+  region: sa-east-1
+  accesskey: '000000'
+  secretkey: '000000'
+  dynamodb:
+    endpoint: http://localhost:4566

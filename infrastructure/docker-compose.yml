@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  localstack:
+    container_name: localstack
+    environment:
+      - DEBUG=1
+      - LOCALSTACK_HOSTNAME=localhost
+      - AWS_DEFAULT_REGION=sa-east-1
+      - AWS_ACCESS_KEY_ID=000000
+      - AWS_SECRET_ACCESS_KEY=000000
+      - DEFAULT_REGION=sa-east-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DATA_DIR=/tmp/localstack/data
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
