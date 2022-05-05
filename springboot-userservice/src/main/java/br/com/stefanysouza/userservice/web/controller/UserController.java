@@ -2,12 +2,14 @@ package br.com.stefanysouza.userservice.web.controller;
 
 import br.com.stefanysouza.userservice.database.entity.User;
 import br.com.stefanysouza.userservice.service.UserService;
-import br.com.stefanysouza.userservice.web.dto.UserDTO;
+import br.com.stefanysouza.userservice.web.dto.UserRequestDTO;
+import br.com.stefanysouza.userservice.web.dto.UserResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,27 +20,28 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<Object> create(@RequestBody @Valid UserRequestDTO userDTO) {
         userService.save(userDTO.toUser());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<UserResponseDTO>> getAll() {
+        final List<User> users = userService.listAll();
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.listAll());
+                .body(UserResponseDTO.toUserResponse(users));
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> findById(@PathVariable String userId) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findByUserId(userId));
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable String userId) {
+        final User user = userService.findByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(UserResponseDTO.toUserResponse(user));
     }
 
     @GetMapping("/{userId}/{gameId}")
-    public ResponseEntity<User> findByKey(@PathVariable String userId, @PathVariable String gameId) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(userId, gameId));
+    public ResponseEntity<UserResponseDTO> findByPrimaryKey(@PathVariable String userId, @PathVariable String gameId) {
+        final User user = userService.findById(userId, gameId);
+        return ResponseEntity.status(HttpStatus.OK).body(UserResponseDTO.toUserResponse(user));
     }
-
-
 }

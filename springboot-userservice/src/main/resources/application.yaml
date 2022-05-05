@@ -1,5 +1,10 @@
 server:
   port: '9080'
+  error:
+    include-message: ALWAYS
+    include-binding-errors: ALWAYS
+    include-stacktrace: ON_PARAM
+    include-exception: false
 
 aws:
   region: sa-east-1
